@@ -1,8 +1,8 @@
 /*
  * application.hpp
- * This file is part of game_engine
+ * This file is part of app_engine
  *
- * Copyright (C) 2016 Radosław Ulatowski
+ * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -30,43 +30,43 @@ class Application
 {
 // Base information about application
 private:
-	std::string _name;
-	std::string _version;
+    std::string _name;
+    std::string _version;
 
 // State of application
 private:
-	bool _is_initialized;
-	bool _is_running;
-	bool _is_paused;
+    bool _is_initialized;
+    bool _is_running;
+    bool _is_paused;
 
 
 public:
-	Application();
-	virtual ~Application();
+    Application();
+    virtual ~Application();
 
 // Basic seters and geters:
 public:
-	void set_app_name(std::string app_name);
-	std::string get_app_name();
+    void set_app_name(std::string app_name);
+    std::string get_app_name();
 
-	void set_app_version(std::string app_version);
-	std::string get_app_version();
+    void set_app_version(std::string app_version);
+    std::string get_app_version();
 
 // App running control functions:
 public:
-	// Initialize application
-	int init(int argc, char *argv[]);
+    // Initialize application
+    int init(int argc, char *argv[]);
 
-	// Start main application
-	int run();
+    // Start main application
+    int run();
 
-	// Pause application but not finish
-	void pause();
+    // Pause application but not finish
+    void pause();
 
-	// Resume application after pause
-	void resume();
+    // Resume application after pause
+    void resume();
 
-	// Finish application
-	void finish();
+    // Finish application
+    void finish();
 };
 

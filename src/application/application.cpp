@@ -1,8 +1,8 @@
 /*
  * application.cpp
- * This file is part of game_engine
+ * This file is part of app_engine
  *
- * Copyright (C) 2016 Radosław Ulatowski
+ * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -19,9 +19,8 @@
  */
 
 
-
-#include "global.hpp"
-#include "application.hpp"
+#include "global/global.hpp"
+#include "application/application.hpp"
 
 
 
@@ -30,8 +29,8 @@ Application::Application()
 {
     _name = APPLICATION_NAME_DEFAULT;
     _version = std::to_string(GAME_ENGINE_VER_MAJOR) 
-                   + "." 
-                   + std::to_string(GAME_ENGINE_VER_MINOR);
+                    + "." 
+                    + std::to_string(GAME_ENGINE_VER_MINOR);
 
     _is_initialized = false; 
     _is_running = false;
@@ -46,7 +45,7 @@ Application::~Application()
 
 void Application::set_app_name(std::string app_name)
 {
-    _name = app_namme;
+    _name = app_name;
 };
 
 
@@ -61,9 +60,37 @@ void Application::set_app_version(std::string app_version)
     _version = app_version;
 };
 
-    
+
 std::string Application::get_app_version()
 {
     return _version;
+};
+
+
+int Application::init(int argc, char *argv[])
+{
+    logger.log(std::string("Starting ") + _name);
+    logger.log(std::string("Version ") + _version);
+};
+
+
+int Application::run()
+{
+};
+
+
+void Application::pause()
+{
+};
+
+
+void Application::resume()
+{
+};
+
+
+void Application::finish()
+{
+    logger.log("Finish");
 };
 

@@ -1,8 +1,8 @@
 /*
- * global.hpp
- * This file is part of game_engine
+ * global.cpp
+ * This file is part of app_engine
  *
- * Copyright (C) 2016 Radosław Ulatowski
+ * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU Library General Public License as published by
@@ -19,7 +19,7 @@
  */
 
 
-#define APPLICATION_NAME_DEFAULT "game_engine application"
+#include "global/global.hpp"
 
-#define GAME_ENGINE_VER_MAJOR 0
-#define GAME_ENGINE_VER_MINOR 1
+Logger logger;
+
