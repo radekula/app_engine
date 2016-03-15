@@ -19,12 +19,13 @@
  */
 
 
-
-
 #include <iostream>
 #include "logging/logging.hpp"
 
 
+namespace app_engine
+{
+    
 
 Logger::Logger()
 {
@@ -54,3 +55,4 @@ void Logger::error(std::string message)
 };
 
 
+};

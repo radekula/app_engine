@@ -18,11 +18,18 @@ endif ()
 
 find_package(PkgConfig REQUIRED)
 
+pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+
+include_directories(${JSONCPP_INCLUDE_DIRS})
+link_directories(${JSONCPP_LIBRARY_DIRS})
+link_libraries(${JSONCPP_LIBRARIES})
+
 include_directories (${CMAKE_CURRENT_LIST_DIR}/src/)
 
 file (GLOB APP_ENGINE_SRC 
         "src/main/*.cpp"
         "src/global/*.cpp"
+        "src/utils/*.cpp"
         "src/logging/*.cpp"
         "src/application/*.cpp")
 

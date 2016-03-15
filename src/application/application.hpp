@@ -21,11 +21,18 @@
 
 
 
+#ifndef __APP_ENGINE_APPLICATION_HPP__
+#define __APP_ENGINE_APPLICATION_HPP__
+
+
 #include <string>
+#include "utils/config.hpp"
 
 
-
-
+namespace app_engine
+{
+    
+        
 class Application
 {
 // Base information about application
@@ -33,12 +40,15 @@ private:
     std::string _name;
     std::string _version;
 
+// Application configuration
+private:
+    Config _config;
+
 // State of application
 private:
     bool _is_initialized;
     bool _is_running;
     bool _is_paused;
-
 
 public:
     Application();
@@ -70,3 +80,8 @@ public:
     void finish();
 };
 
+
+}
+
+
+#endif

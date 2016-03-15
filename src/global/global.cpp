@@ -21,5 +21,12 @@
 
 #include "global/global.hpp"
 
+
+namespace app_engine
+{
+
+
 Logger logger;
 
+
+};

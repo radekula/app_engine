@@ -1,5 +1,5 @@
 /*
- * logging.hpp
+ * config.hpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -19,27 +19,29 @@
  */
 
 
-#ifndef __APP_ENGINE_LOGGING_HPP__
-#define __APP_ENGINE_LOGGING_HPP__
+
+
+#ifndef __APP_ENGINE_CONFIG_HPP__
+#define __APP_ENGINE_CONFIG_HPP__
 
 
 #include <string>
+#include <json/json.h>
 
 
 namespace app_engine
 {
 
 
-class Logger
+class Config : public Json::Value
 {
 public:
-    Logger();
-    virtual ~Logger();
+    Config();
+    virtual ~Config();
     
 public:
-    void log(std::string message);
-    void warning(std::string message);
-    void error(std::string message);
+    void from_file(std::string file);
+    void to_file(std::string file);
 };
 
 

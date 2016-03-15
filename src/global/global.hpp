@@ -19,12 +19,27 @@
  */
 
 
+#ifndef __APP_ENGINE_GLOBAL_HPP__
+#define __APP_ENGINE_GLOBAL_HPP__
+
+
+#include "logging/logging.hpp"
+
+
+namespace app_engine
+{
+
+
 #define APPLICATION_NAME_DEFAULT "app_engine"
 
 #define GAME_ENGINE_VER_MAJOR 0
 #define GAME_ENGINE_VER_MINOR 1
 
 
-#include "logging/logging.hpp"
-
 extern Logger logger;
+
+
+};
+
+
+#endif

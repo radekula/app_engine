@@ -25,7 +25,7 @@
 
 int main(int argc, char *argv[])
 {
-    Application app;
+    app_engine::Application app;
 
     app.init(argc, argv);
     app.run();

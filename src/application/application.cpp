@@ -23,6 +23,8 @@
 #include "application/application.hpp"
 
 
+namespace app_engine
+{
 
 
 Application::Application()
@@ -94,3 +96,5 @@ void Application::finish()
     logger.log("Finish");
 };
 
+
+};
