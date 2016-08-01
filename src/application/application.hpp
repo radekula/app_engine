@@ -26,7 +26,10 @@
 
 
 #include <string>
+#include <vector>
 #include "utils/config.hpp"
+#include "display/display.hpp"
+#include "display/window.hpp"
 
 
 namespace app_engine
@@ -42,13 +45,17 @@ private:
 
 // Application configuration
 private:
-    Config _config;
+    app_engine::config::Config _config;
 
 // State of application
 private:
     bool _is_initialized;
     bool _is_running;
     bool _is_paused;
+
+private:
+    std::vector<app_engine::display::Display> _displays;
+    std::vector<app_engine::display::Window> _windows;
 
 public:
     Application();

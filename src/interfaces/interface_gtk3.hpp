@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * interface_gtk3.hpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -19,38 +19,48 @@
  */
 
 
+#ifndef __APP_ENGINE_INTERFACES_GTK3_HPP__
+#define __APP_ENGINE_INTERFACES_GTK3_HPP__
 
 
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
 
-
-#include <string>
-#include <map>
+#include <memory>
+#include <functional>
+#include <thread>
 
 
 namespace app_engine {
-namespace config {
+namespace interface {
 
 
-class Config
+typedef enum {
+    FORCE_QUIT,
+    QUIT
+} ProcessCommand;
+
+
+class InterfaceGtk3
 {
 private:
-    std::map<std::string, std::string> _values;
-    
-public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
+    std::thread _interface_thread;
 
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
+private:
+    static void _run(InterfaceGtk3 *, int argc, char *argv[]);
+
+private:
+    // Start thread
+    void init_thread();
 
 public:
-    void init_with_defaults();
+    InterfaceGtk3();
+    ~InterfaceGtk3();
+
+public:
+    // Initialize interface
+    int init(int argc, char *argv[]);
+
+    // Close interface
+    void close();
 };
 
 

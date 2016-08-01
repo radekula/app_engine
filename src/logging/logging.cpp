@@ -23,9 +23,9 @@
 #include "logging/logging.hpp"
 
 
-namespace app_engine
-{
-    
+namespace app_engine {
+namespace logging {
+
 
 Logger::Logger()
 {
@@ -37,22 +37,32 @@ Logger::~Logger()
 };
 
 
-void Logger::log(std::string message)
+void Logger::log(std::string message, bool new_line)
 {
-    std::cout << message << std::endl;
+    std::cout << message;
+
+    if(new_line)
+        std::cout << std::endl;
 };
 
 
-void Logger::warning(std::string message)
+void Logger::warning(std::string message, bool new_line)
 {
-    std::cout << "[ WARNING ] " << message << std::endl;
+    std::cout << "[ WARNING ] " << message;
+
+    if(new_line)
+        std::cout << std::endl;
 };
 
 
-void Logger::error(std::string message)
+void Logger::error(std::string message, bool new_line)
 {
-    std::cout << "[ ERROR ] " << message << std::endl;
+    std::cout << "[ ERROR ] " << message;
+
+    if(new_line)
+        std::cout << std::endl;
 };
 
 
+};
 };

@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * display.cpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -20,43 +20,69 @@
 
 
 
-
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
-
-
-#include <string>
-#include <map>
+#include "display.hpp"
 
 
 namespace app_engine {
-namespace config {
+namespace display {
 
 
-class Config
+Display::Display()
 {
-private:
-    std::map<std::string, std::string> _values;
+    _id = 0;
+};
+
+
+Display::~Display()
+{
+};
+
+
+void Display::set_name(std::string name)
+{
+    _name = name;
+};
+
+
+std::string Display::get_name()
+{
+    return _name;
+};
+
+
+void Display::set_id(uint32_t id)
+{
+    _id = id;
+};
+
+
+uint32_t Display::get_id()
+{
+    return _id;
+};
+
+
+std::vector<app_engine::display::DisplayMode> Display::supported_modes()
+{
+    std::vector<app_engine::display::DisplayMode> modes;
+
+    modes = _supported_modes;
     
-public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
-
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
-
-public:
-    void init_with_defaults();
+    return modes;
 };
 
 
+void Display::set_mode(app_engine::display::DisplayMode mode)
+{
+    _current_mode = mode;
+};
+
+
+app_engine::display::DisplayMode Display::current_mode()
+{
+    return _current_mode;
+};
+
 
 };
 };
-
-
-#endif

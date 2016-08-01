@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * events_stream.hpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -20,43 +20,49 @@
 
 
 
-
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
+#ifndef __APP_ENGINE_EVENTS_STREAM_HPP__
+#define __APP_ENGINE_EVENTS_STREAM_HPP__
 
 
 #include <string>
-#include <map>
+#include <vector>
+#include <functional>
+#include "events.hpp"
 
 
 namespace app_engine {
-namespace config {
+namespace events {
 
 
-class Config
+class EventsStream
 {
 private:
-    std::map<std::string, std::string> _values;
+    std::string _name;
+    std::vector<std::function<void(app_engine::events::Event&)>> _handlers;
     
 public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
-
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
+    EventsStream();
+    virtual ~EventsStream();
 
 public:
-    void init_with_defaults();
+    // Set Events stream name
+    void set_name(std::string name);
+
+    // Get Events stream name
+    std::string get_name();
+
+    // Register function to handle event. Multiple functions can be registered.
+    void register_handler(std::function<void(app_engine::events::Event&)> function);
+
+    // Unregister function from handle event.
+    void unregister_handler(std::function<void(app_engine::events::Event&)> function);
 };
 
 
 
 };
 };
+
 
 
 #endif

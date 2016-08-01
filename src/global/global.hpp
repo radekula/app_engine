@@ -24,21 +24,27 @@
 
 
 #include "logging/logging.hpp"
+#include "utils/config.hpp"
 
-
-namespace app_engine
-{
+namespace app_engine {
+namespace global {
 
 
 #define APPLICATION_NAME_DEFAULT "app_engine"
 
-#define GAME_ENGINE_VER_MAJOR 0
-#define GAME_ENGINE_VER_MINOR 1
+#define APP_ENGINE_VER_MAJOR "0"
+#define APP_ENGINE_VER_MINOR "1"
+
+#define DEFAULT_FULLSCREEN "0"
+#define DEFAULT_WIDTH "800"
+#define DEFAULT_HEIGHT "600"
+#define DEFAULT_RESIZABLE "0"
 
 
-extern Logger logger;
+extern app_engine::logging::Logger logger;
 
 
+};
 };
 
 

@@ -19,8 +19,10 @@
  */
 
 
+#include <algorithm>
 #include "global/global.hpp"
 #include "application/application.hpp"
+#include "utils/parser_commandline.hpp"
 
 
 namespace app_engine
@@ -29,19 +31,25 @@ namespace app_engine
 
 Application::Application()
 {
-    _name = APPLICATION_NAME_DEFAULT;
-    _version = std::to_string(GAME_ENGINE_VER_MAJOR) 
-                    + "." 
-                    + std::to_string(GAME_ENGINE_VER_MINOR);
+    _config.init_with_defaults();
+
+    _name = _config.get_value("app.name");
+    _version = _config.get_value("app.ver_major")
+             + "."
+             + _config.get_value("app.ver_minor");
 
     _is_initialized = false; 
     _is_running = false;
     _is_paused = false;
+
+    app_engine::global::logger.log(std::string("Starting ") + _name + "... ", false);
+    app_engine::global::logger.log(std::string("version ") + _version);
 };
 
 
 Application::~Application()
 {
+    finish();
 };
 
 
@@ -71,8 +79,17 @@ std::string Application::get_app_version()
 
 int Application::init(int argc, char *argv[])
 {
-    logger.log(std::string("Starting ") + _name);
-    logger.log(std::string("Version ") + _version);
+    app_engine::global::logger.log("Initializing application... ", false);
+        
+    auto command_line = app_engine::parser::to_vector(argc, argv);
+
+    auto iter = std::find(command_line.begin(), command_line.end(), std::string("--config"));
+    if(iter != command_line.end() && ++iter != command_line.end())
+        _config.from_file(*iter);
+    else
+        _config.from_file(std::string("./app_engine.config"));
+    
+    app_engine::global::logger.log("done");
 };
 
 
@@ -93,7 +110,8 @@ void Application::resume()
 
 void Application::finish()
 {
-    logger.log("Finish");
+    app_engine::global::logger.log("Quiting... ", false);
+    app_engine::global::logger.log("done");
 };
 
 

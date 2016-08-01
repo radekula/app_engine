@@ -26,8 +26,8 @@
 #include <string>
 
 
-namespace app_engine
-{
+namespace app_engine {
+namespace logging {
 
 
 class Logger
@@ -37,12 +37,13 @@ public:
     virtual ~Logger();
     
 public:
-    void log(std::string message);
-    void warning(std::string message);
-    void error(std::string message);
+    void log(std::string message, bool new_line = true);
+    void warning(std::string message, bool end_line = true);
+    void error(std::string message, bool end_line = true);
 };
 
 
+};
 };
 
 

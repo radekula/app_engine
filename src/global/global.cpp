@@ -22,11 +22,12 @@
 #include "global/global.hpp"
 
 
-namespace app_engine
-{
+namespace app_engine {
+namespace global {
 
 
-Logger logger;
+app_engine::logging::Logger logger;
 
 
+};
 };

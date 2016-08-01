@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * parser_commandline.hpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -21,42 +21,22 @@
 
 
 
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
+#ifndef __APP_ENGINE_PARSER_COMMANDLINE_HPP__
+#define __APP_ENGINE_PARSER_COMMANDLINE_HPP__
 
 
 #include <string>
-#include <map>
+#include <vector>
 
 
 namespace app_engine {
-namespace config {
+namespace parser {
 
 
-class Config
-{
-private:
-    std::map<std::string, std::string> _values;
-    
-public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
-
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
-
-public:
-    void init_with_defaults();
-};
-
+std::vector<std::string> to_vector(int argc, char *argv[]);
 
 
 };
 };
-
 
 #endif

@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * window.hpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -19,40 +19,50 @@
  */
 
 
+#ifndef __APP_ENGINE_WINDOW_HPP__
+#define __APP_ENGINE_WINDOW_HPP__
 
 
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
-
-
-#include <string>
-#include <map>
+#include "display.hpp"
 
 
 namespace app_engine {
-namespace config {
+namespace display {
 
 
-class Config
+class Window
 {
 private:
-    std::map<std::string, std::string> _values;
+    app_engine::display::Display _display;
+
+private:
+    bool _fullscreen;
+    uint32_t _width;
+    uint32_t _height;
+    bool _resizable;
     
 public:
-    Config();
-    virtual ~Config();
+    Window();
+    virtual ~Window();
+
+public:
+    void set_width(uint32_t width);
+    uint32_t get_width();
     
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
+    void set_height(uint32_t height);
+    uint32_t get_height();
+    
+    void set_resolution(uint32_t width, uint32_t height);
 
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
-
-public:
-    void init_with_defaults();
+    void set_fullscreen(bool fullscreen);
+    bool get_fullscreen();
+    
+    void set_resizable(bool resizable);
+    bool get_resizable();
+    
+    void set_display(app_engine::display::Display &display);
+    app_engine::display::Display get_display();
 };
-
 
 
 };

@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * events_stream.cpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -19,44 +19,69 @@
  */
 
 
-
-
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
-
-
-#include <string>
-#include <map>
+#include "events_stream.hpp"
 
 
 namespace app_engine {
-namespace config {
+namespace events {
 
 
-class Config
+
+
+EventsStream::EventsStream()
 {
-private:
-    std::map<std::string, std::string> _values;
-    
-public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
-
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
-
-public:
-    void init_with_defaults();
 };
 
 
 
-};
+
+EventsStream::~EventsStream()
+{
 };
 
 
-#endif
+
+void EventsStream::set_name(std::string name)
+{
+    _name = name;
+};
+
+
+
+std::string EventsStream::get_name()
+{
+    return _name;
+};
+
+
+
+
+void EventsStream::register_handler(std::function<void(app_engine::events::Event&)> function)
+{
+    _handlers.push_back(function);
+};
+
+
+
+
+void EventsStream::unregister_handler(std::function<void(app_engine::events::Event&)> function)
+{
+/*    auto iterator = _handlers.begin();
+
+    while(iterator != _handlers.end())
+    {
+        if((size_t)((*iterator).target()) == (size_t) function.target())
+        {
+            _handlers.erase(iterator);
+            break;
+        };
+        iterator++;
+    };*/
+};
+
+
+
+
+};
+};
+

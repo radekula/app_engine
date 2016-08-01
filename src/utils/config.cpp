@@ -19,13 +19,13 @@
  */
 
 
-#include <json/reader.h>
-#include <json/writer.h>
+
 #include "utils/config.hpp"
+#include "global/global.hpp"
 
+namespace app_engine {
+namespace config {
 
-namespace app_engine
-{
 
 
 Config::Config()
@@ -48,4 +48,38 @@ void Config::to_file(std::string file)
 };
 
 
+void Config::set_value(std::string name, std::string value)
+{
+    _values[name] = value;
+};
+
+
+std::string Config::get_value(std::string name)
+{
+    std::string value;
+    
+    auto iter = _values.find(name);
+
+    if(iter != _values.end())
+        value = iter->second;
+
+    return value;
+};
+
+
+
+void Config::init_with_defaults()
+{
+    set_value("app.name", APPLICATION_NAME_DEFAULT);
+    set_value("app.ver_major", APP_ENGINE_VER_MAJOR);
+    set_value("app.ver_minor", APP_ENGINE_VER_MINOR);
+
+    set_value("window[0].fullscreen", DEFAULT_FULLSCREEN);
+    set_value("window[0].width", DEFAULT_WIDTH);
+    set_value("window[0].height", DEFAULT_HEIGHT);
+    set_value("window[0].resizable", DEFAULT_RESIZABLE);
+};
+
+
+};
 };

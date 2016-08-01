@@ -1,5 +1,5 @@
 /*
- * config.hpp
+ * uuid.cpp
  * This file is part of app_engine
  *
  * Copyright (C) 2016 Radosław Ulatowski <radekula@gmail.com>
@@ -19,44 +19,28 @@
  */
 
 
-
-
-#ifndef __APP_ENGINE_CONFIG_HPP__
-#define __APP_ENGINE_CONFIG_HPP__
-
-
-#include <string>
-#include <map>
+#include <cstring>
+#include "uuid.hpp"
 
 
 namespace app_engine {
-namespace config {
+namespace uuid {
 
 
-class Config
+std::string generate_uuid()
 {
-private:
-    std::map<std::string, std::string> _values;
-    
-public:
-    Config();
-    virtual ~Config();
-    
-public:
-    void from_file(std::string file);
-    void to_file(std::string file);
+    uuid_t uuid;
+    char out[40];
 
-    void set_value(std::string name, std::string value);
-    std::string get_value(std::string name);
+    std::memset(out, 0, sizeof(out));
 
-public:
-    void init_with_defaults();
+    uuid_generate(uuid);
+    uuid_unparse(uuid, out);
+
+    return std::string(out);
 };
-
 
 
 };
 };
 
-
-#endif
